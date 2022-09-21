@@ -15,7 +15,7 @@ int main()
     cout<<"Do you want to enter your answers or to get the previous Data? (1 or 2)?\n";
     int main_root;
     cin>>main_root;
-    if(main_root==1){
+    if(main_root == 1){
     ofstream fout("Output.txt");
     ifstream finq("Questionz.txt");
     string q1, q2, q3, a1, a2, a3;
