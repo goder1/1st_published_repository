@@ -24,7 +24,7 @@ int main()
     fout<<a1<<" "<<a2<<" "<<a3;
     fout.close();
     }
-    else if(main_root==2)result();
+    else if(main_root == 2)result();
 
     return 0;
 }
