@@ -7,6 +7,7 @@ void result()
     string a1,a2,a3;
     ifstream fin("Output.txt");
     fin>>a1>>a2>>a3;
+    cout<<"pet_name:\tfavourite tv series:\t street name:\n";
     cout<<a1<<"\t\t"<<a2<<"\t\t"<<a3;
 }
 int main()
@@ -25,7 +26,7 @@ int main()
     fout.close();
     }
     else if(main_root==2)result();
-    
+    else cout<<"-_-";
 
     return 0;
 }
