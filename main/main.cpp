@@ -25,6 +25,7 @@ int main()
     fout.close();
     }
     else if(main_root==2)result();
+    
 
     return 0;
 }
