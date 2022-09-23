@@ -4,7 +4,7 @@
 #include <map>
 using namespace std;
 
-void result()
+void result(int total)
 {
     string a1,a2,a3;
     int n,r=0;
@@ -12,12 +12,35 @@ void result()
     fin>>n;
     string spop;
     map<string,int> pop;
-    cout<<"Pet_name:\tfavourite_tv_series:\tstreet_name:\n";
+    int amount = (total-43)/3;
+    cout<<"Pet_name: ";for(int i = 0; i < amount;i++)cout<<" ";
+    cout<<"favourite_tv_series: ";for(int i = 0; i < amount;i++)cout<<" ";
+    cout<<"street_name:\n";
     for(int i = 0;i<n*3;)
     {
     fin>>a1>>a2>>a3;
     pop[a3]++;
-    cout<<a1<<"\t\t"<<a2<<"\t\t"<<a3<<endl;
+    //cout<<"amount = "<<amount<<endl;
+    //cout<<"a1.length() = "<<a1.length()<<endl;
+    if(9+amount>=a1.length())
+    {
+        cout<<a1;
+        for(int i = 0; i <= 9+amount-a1.length();i++)cout<<" ";
+    }
+    else cout<<a1.substr(0,6+amount)<<"... ";
+    if(20+amount>=a2.length())
+    {
+        cout<<a2;
+        for(int i = 0; i <= amount-a2.length()+20;i++)cout<<" ";
+    }
+    else cout<<a2.substr(0,17+amount)<<"... ";
+    if(12+amount>=a3.length())
+    {
+        cout<<a3;
+        for(int i = 0; i <= amount-a3.length()+12;i++)cout<<" ";
+    }
+    else cout<<a3.substr(0,9+amount)<<"...";
+    cout<<endl;
     i+=3;
     }
     for (auto [first, second] : pop)
@@ -51,8 +74,13 @@ int main()
     fout<<a1<<" "<<a2<<" "<<a3<<endl;
     fout.close();
     }
-    else if(main_root==2)result();
+    else if(main_root==2)
+    {
+        cout<<"Enter width of the table you want to see (min is 43):\n";
+        int total;cin>>total;
+            result(total);
+    }
     else cout<<"-_-";
-
     return 0;
 }
+
