@@ -4,80 +4,55 @@
 #include <map>
 using namespace std;
 
-void change_questions()
-{
-    ofstream fout("Questionz.txt");
-    cout<<"Enter questions which you want to answer in the future (to end your list enter 0):\n";
-    string s;
-    for(cin>>s;s!="0";cin>>s)
-    {
-        fout<<s<<" ";
-    }
-    fout<<"STOP";
-    fout.close();
-    ofstream aout("Output.txt");
-    s="";
-    aout<<s;
-}
 void result(int total)
 {
     string a1,a2,a3;
-    vector<string> quest;
-    int n,r=0,k=0;
-    ifstream qin("Questionz.txt");
-    string q;
-    for(qin>>q;q!="STOP";qin>>q)
-    {
-        k+=2+q.length();
-        quest.push_back(q);
-    }
-    qin.close();
+    int n,r=0;
     ifstream fin("Output.txt");
     fin>>n;
     string spop;
     map<string,int> pop;
-
-    int amount = (total-k)/quest.size();
-    for(int i = 0; i < quest.size();i++)
+    int amount = (total-43)/3;
+    cout<<"Pet_name: ";for(int i = 0; i < amount;i++)cout<<" ";
+    cout<<"favourite_tv_series: ";for(int i = 0; i < amount;i++)cout<<" ";
+    cout<<"street_name:\n";
+    for(int i = 0;i<n*3;)
     {
-        cout<<quest[i]<<": ";
-        for(int j = 0; j < amount;j++)cout<<" ";
+    fin>>a1>>a2>>a3;
+    pop[a3]++;
+    //cout<<"amount = "<<amount<<endl;
+    //cout<<"a1.length() = "<<a1.length()<<endl;
+    if(9+amount>=a1.length())
+    {
+        cout<<a1;
+        for(int i = 0; i <= 9+amount-a1.length();i++)cout<<" ";
     }
+    else cout<<a1.substr(0,6+amount)<<"... ";
+    if(20+amount>=a2.length())
+    {
+        cout<<a2;
+        for(int i = 0; i <= amount-a2.length()+20;i++)cout<<" ";
+    }
+    else cout<<a2.substr(0,17+amount)<<"... ";
+    if(12+amount>=a3.length())
+    {
+        cout<<a3;
+        for(int i = 0; i <= amount-a3.length()+12;i++)cout<<" ";
+    }
+    else cout<<a3.substr(0,9+amount)<<"...";
     cout<<endl;
-    for(int i = 0;i<n;i++)
-    {
-        vector<string> answers;
-        string ans;
-        for(int j = 0;j<quest.size();j++)
-        {
-            fin>>ans;answers.push_back(ans);
-        }
-        pop[answers[answers.size()-1]]++;
-        for(int j = 0; j < answers.size();j++)
-        {
-            if(quest[j].length()+amount>=answers[j].length())
-            {
-                cout<<answers[j];
-                for(int m = 0; m <= quest[j].length()+amount-answers[j].length();m++)cout<<" ";
-            }
-            else
-            {
-                cout<<answers[j].substr(0,quest[j].length()-3+amount)<<"... ";
-            }
-            cout<<" ";
-        }
-        cout<<endl;
+    i+=3;
     }
-    for(auto [first, second] : pop)
+    for (auto [first, second] : pop)
     {
-        if(second>r){r=second;spop=first;}
+    if(second>r){r=second;spop=first;}
     }
-    cout<<"The most popular answer for the last question is *"<<spop<<"*"<<endl;
+    cout<<"The most popular answer for the third question is *"<<spop<<"*"<<endl;
 
 }
 int main()
 {
-    cout<<"Do you want to enter your answers, to get the previous Data or to change questions in question-list? (1, 2 or 3)?\n";
+    cout<<"Do you want to enter your answers or to get the previous Data? (1 or 2)?\n";
     int main_root;
     cin>>main_root;
     if(main_root==1){
@@ -101,18 +76,11 @@ int main()
     }
     else if(main_root==2)
     {
-        int k = 0;
-        ifstream qin("Questionz.txt");
-        string q;
-        for(qin>>q;q!="STOP";qin>>q)
-        {
-            k+=2+q.length();
-        }
-        cout<<"Enter width of the table you want to see (not less than "<<k<<"):\n";
+        cout<<"Enter width of the table you want to see (min is 43):\n";
         int total;cin>>total;
             result(total);
     }
-    else if(main_root == 3)change_questions();
     else cout<<"-_-";
     return 0;
 }
+
