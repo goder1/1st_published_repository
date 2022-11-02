@@ -1,0 +1,5 @@
+what is your age?
+where do you live?
+how is it going?
+what would you do?
+0

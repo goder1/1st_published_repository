@@ -1,0 +1,4 @@
+1 16
+moscow
+fine
+finish my programm

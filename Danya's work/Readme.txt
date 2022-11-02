@@ -1,0 +1,1 @@
+Here is my program which asks people few questions and gives the statistics to the person who would want to have it.
